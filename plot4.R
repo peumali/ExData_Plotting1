@@ -5,7 +5,7 @@ pwcon <- fread(fileName, na.strings = c("?"), colClasses = c("character","charac
 pwcon$Date <- as.Date(pwcon$Date, "%d/%m/%Y")
 pwcon <- subset(pwcon, (pwcon$Date == as.Date("2007-02-01") | pwcon$Date == as.Date("2007-02-02")))
 
-par(mfrow = c(2,2))
+par(mfrow = c(2,2), mar = c(4, 4, 2, 1))
 
 #Plot 1 row 1, column 1
 plot(datetime, pwcon$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power")
