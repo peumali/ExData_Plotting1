@@ -5,6 +5,10 @@ pwcon <- fread(fileName, na.strings = c("?"), colClasses = c("character","charac
 pwcon$Date <- as.Date(pwcon$Date, "%d/%m/%Y")
 pwcon <- subset(pwcon, (pwcon$Date == as.Date("2007-02-01") | pwcon$Date == as.Date("2007-02-02")))
 
+#Get data and time
+datetime <- paste(pwcon$Date, pwcon$Time)
+datetime <- strptime(datetime, format = "%Y-%m-%d %H:%M:%S")
+
 par(mfrow = c(2,2), mar = c(4, 4, 2, 1))
 
 #Plot 1 row 1, column 1
@@ -24,7 +28,7 @@ lines(datetime, pwcon$Sub_metering_2 ,type = "l", col = "red")
 lines(datetime, pwcon$Sub_metering_3 ,type = "l", col = "blue")
 
 #Add Legend
-legend("topright",  legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),col = c("black", "red", "blue"), lty = c(1, 1, 1), cex = 0.5)
+legend("topright",  legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),col = c("black", "red", "blue"), lty = c(1, 1, 1), cex = 0.5, bty = "n")
 
 #Plot 4
 plot(datetime, pwcon$Global_reactive_power, ylab = "Global_reactive_power", type = "l")
